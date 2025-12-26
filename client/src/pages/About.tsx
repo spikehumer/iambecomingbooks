@@ -27,19 +27,25 @@ export default function About() {
 
         <div className="prose prose-lg prose-stone prose-p:font-normal prose-p:leading-loose max-w-none text-foreground/90 border-l border-accent/20 pl-6 md:pl-10">
           <p>
-            I write to remember. I write to heal. I write to find the path back to myself.
+            I write to remember what I’ve always known but sometimes forget.
           </p>
           <p>
-            My work is born from the deepest parts of my own human experience—the joy, the sorrow, the loss, and the love. 
-            I do not claim to have answers. I only have my own questions, and the willingness to sit with them until they reveal their own quiet truths.
+            My work is born from the deepest parts of my own human experience—the becoming, the returning, the slow discovery that presence matters more than performance.
           </p>
           <p>
-            <em>I Am Becoming</em> is a reflection of my journey through grief, particularly the profound loss that changes the landscape of a life forever. 
+            I do not claim to have answers. I only have my own questions, and the willingness to stay with them until something true emerges.
+          </p>
+          <p>
+            <em>I Am Becoming</em> is an invitation to the path I walk every day—toward alignment, toward honesty, toward the self that was always there beneath the roles and expectations.
+          </p>
+          <p>
             It is my offering to you, a fellow traveler.
           </p>
           <p>
-            I believe that we are all constantly becoming. It is not a process that ends, but a devotion we practice every day. 
-            Thank you for the gift of this day, and for sharing this space with me.
+            We are all constantly becoming. Not toward some finished version of ourselves, but deeper into who we already are.
+          </p>
+          <p>
+            Thank you for the gift of this day, and for walking this part of the journey with me.
           </p>
           <p className="pt-4 font-serif italic text-foreground/80">
             Namaste.
