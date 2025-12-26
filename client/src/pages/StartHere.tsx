@@ -17,7 +17,10 @@ export default function StartHere() {
 
         <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose prose-p:mb-8 prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
           <p>
-            If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
+            If you have found your way here, you may be seeking a moment of stillness in a noisy world.
+          </p>
+          <p>
+            Or perhaps you are simply ready to begin.
           </p>
           <p>
             <em>I Am Becoming</em> is not a program to follow. It is a companion for where you already are — a collection of journal entries, mantras, and reflections born from the honest journey of living and the enduring presence of love.
