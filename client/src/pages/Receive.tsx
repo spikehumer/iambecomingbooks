@@ -24,13 +24,13 @@ export default function Receive() {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-10">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-16">
         
         <div className="space-y-4 max-w-lg mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">
             Receive
           </h1>
-          <p className="text-[1.17rem] font-normal text-muted-foreground/90 leading-relaxed">
+          <p className="text-[1.22rem] font-normal text-muted-foreground/90 leading-relaxed">
             A gentle invitation to stay connected. <br/>
             Receive occasional updates on the <em>I Am Becoming</em> series.
           </p>
@@ -43,7 +43,7 @@ export default function Receive() {
               placeholder="your@email.com" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-normal transition-colors"
+              className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-normal transition-colors text-[1.1rem]"
               required
             />
           </div>
