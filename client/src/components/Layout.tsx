@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Link>
           
           <nav>
-            <ul className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm md:text-base font-light tracking-widest uppercase text-muted-foreground">
+            <ul className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm md:text-base font-normal tracking-widest uppercase text-muted-foreground">
               {navItems.map((item) => (
                 <li key={item.path}>
                   <Link href={item.path}>

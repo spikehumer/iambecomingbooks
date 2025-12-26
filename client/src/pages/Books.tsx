@@ -10,9 +10,9 @@ export default function Books() {
           <div className="relative group">
             <div className="absolute -inset-4 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <img 
-              src="/images/book-cover-mockup.jpg" 
+              src="/images/book-3d.jpg" 
               alt="I Am Becoming: Book One" 
-              className="relative w-full max-w-[300px] md:max-w-[350px] shadow-2xl shadow-muted-foreground/10 rounded-sm opacity-95 hover:opacity-100 transition-all duration-700 transform hover:-translate-y-1"
+              className="relative w-full max-w-[300px] md:max-w-[400px] shadow-xl shadow-muted-foreground/20 rounded-sm opacity-100 transition-all duration-700 transform hover:-translate-y-1"
             />
           </div>
         </div>

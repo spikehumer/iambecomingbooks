@@ -23,14 +23,14 @@ export default function Home() {
             <span className="text-muted-foreground">before the rising.</span>
           </h1>
           
-          <p className="text-lg md:text-xl font-light text-muted-foreground leading-relaxed max-w-lg mx-auto">
+          <p className="text-lg md:text-xl font-normal text-muted-foreground leading-relaxed max-w-lg mx-auto">
             A quiet space for the <em>I Am Becoming</em> book series. <br/>
             Reflections, mantras, and sacred writing for the journey of grief, healing, and love.
           </p>
 
           <div className="pt-8">
             <Link href="/start-here">
-              <a className="inline-block px-8 py-3 border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all duration-700 tracking-widest uppercase text-sm font-light rounded-sm">
+              <a className="inline-block px-8 py-3 border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm">
                 Begin Here
               </a>
             </Link>
