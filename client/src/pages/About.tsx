@@ -19,13 +19,13 @@ export default function About() {
             <h1 className="text-3xl md:text-4xl font-serif text-foreground">
               About the Author
             </h1>
-            <p className="text-lg text-muted-foreground font-light italic">
+            <p className="text-lg text-foreground/80 font-normal italic">
               Spike Humer
             </p>
           </header>
         </div>
 
-        <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose max-w-none text-muted-foreground/90 border-l border-accent/20 pl-6 md:pl-10">
+        <div className="prose prose-lg prose-stone prose-p:font-normal prose-p:leading-loose max-w-none text-foreground/90 border-l border-accent/20 pl-6 md:pl-10">
           <p>
             I write to remember. I write to heal. I write to find the path back to myself.
           </p>
