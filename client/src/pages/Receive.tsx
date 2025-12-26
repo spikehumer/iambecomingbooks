@@ -30,7 +30,7 @@ export default function Receive() {
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">
             Receive
           </h1>
-          <p className="text-lg font-light text-muted-foreground leading-relaxed">
+          <p className="text-lg font-normal text-muted-foreground/90 leading-relaxed">
             A gentle invitation to stay connected. <br/>
             Receive occasional updates on the <em>I Am Becoming</em> series.
           </p>
@@ -43,7 +43,7 @@ export default function Receive() {
               placeholder="your@email.com" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-light transition-colors"
+              className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-normal transition-colors"
               required
             />
           </div>
@@ -58,7 +58,7 @@ export default function Receive() {
           </Button>
         </form>
 
-        <p className="text-xs text-muted-foreground/40 font-light max-w-xs mx-auto pt-8">
+        <p className="text-xs text-muted-foreground/60 font-normal max-w-xs mx-auto pt-8">
           No spam. No noise. Just the work.
         </p>
 

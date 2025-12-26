@@ -25,7 +25,7 @@ export default function About() {
           </header>
         </div>
 
-        <div className="prose prose-lg prose-stone max-w-none text-foreground/90 border-l border-accent/20 pl-6 md:pl-10 space-y-8">
+        <div className="prose prose-lg prose-stone max-w-none text-muted-foreground/90 border-l border-accent/20 pl-6 md:pl-10 space-y-8">
           <p className="font-normal leading-loose">
             I write to remember what I’ve always known but sometimes forget.
           </p>

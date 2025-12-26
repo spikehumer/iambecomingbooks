@@ -27,7 +27,7 @@ export default function Books() {
             </p>
           </div>
 
-          <div className="prose prose-stone prose-p:font-light prose-p:leading-loose text-muted-foreground/90 max-w-md mx-auto lg:mx-0">
+          <div className="prose prose-lg prose-stone prose-p:font-normal prose-p:leading-loose text-muted-foreground/90 max-w-md mx-auto lg:mx-0">
             <p>
               <em>"Becoming is not a destination. It is a devotion."</em>
             </p>
@@ -45,7 +45,7 @@ export default function Books() {
 
           <div className="pt-4 space-y-4">
             <div className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start items-center">
-              <span className="text-sm font-light text-muted-foreground tracking-wide">
+              <span className="text-sm font-normal text-muted-foreground/90 tracking-wide">
                 Available soon in Paperback & Kindle
               </span>
             </div>
@@ -53,7 +53,7 @@ export default function Books() {
             {/* Subtle separator */}
             <div className="w-12 h-px bg-border mx-auto lg:mx-0" />
             
-            <p className="text-xs text-muted-foreground/60 font-light max-w-xs mx-auto lg:mx-0">
+            <p className="text-xs text-muted-foreground/80 font-normal max-w-xs mx-auto lg:mx-0">
               ISBN: 978-0-9855419-9-6 <br/>
               Published by SoulWord Press
             </p>

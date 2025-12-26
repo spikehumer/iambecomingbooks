@@ -26,10 +26,10 @@ export default function Home() {
         <div className="max-w-2xl text-center space-y-8 px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-foreground/90 leading-tight">
             The waking comes <br/>
-            <span className="text-muted-foreground">before the rising.</span>
+            <span className="text-muted-foreground/90">before the rising.</span>
           </h1>
           
-          <h2 className="text-lg md:text-xl font-normal text-muted-foreground leading-relaxed max-w-lg mx-auto">
+          <h2 className="text-lg md:text-xl font-normal text-muted-foreground/90 leading-relaxed max-w-lg mx-auto">
             A quiet space for the <em>I Am Becoming</em> book series. <br/>
             Reflections, mantras, and sacred writing for the journey of awakening, healing, and love.
           </h2>
