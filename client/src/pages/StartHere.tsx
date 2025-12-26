@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { Link } from "wouter";
 
 export default function StartHere() {
   return (
@@ -16,24 +17,21 @@ export default function StartHere() {
 
         <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
           <p>
-            If you have found your way here, you may be carrying something heavy. 
-            Or perhaps you are simply seeking a moment of stillness in a noisy world.
+            If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
           </p>
           <p>
-            <em>I Am Becoming</em> is not a program to fix you. It is a companion for where you are right now.
-            It is a collection of journal entries, mantras, and reflections born from the raw, honest journey of grief and the enduring power of love.
+            <em>I Am Becoming</em> is not a program to follow. It is a companion for where you already are — a collection of journal entries, mantras, and reflections born from the honest journey of living and the enduring presence of love.
           </p>
           <p>
-            This work invites you to slow down. To breathe. To honor the complexity of your own becoming.
+            This work invites you to slow down. To breathe. To honor the shape of your own becoming.
           </p>
           
-          <h3 className="text-2xl pt-8 pb-4 text-foreground/80">How to use this space</h3>
+          <h3 className="text-2xl pt-8 pb-4 text-foreground/80">Being here</h3>
           <p>
-            Wander freely. Read a page, then close the tab. Stay as long as you need, or leave as soon as you wish.
-            There is no right way to be here.
+            Wander freely. Read a page, then close the tab. Stay as long as you need, or leave whenever you're ready. There is no right way to be here.
           </p>
           <p>
-            If you feel called, you can explore the <a href="/books" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">Book Series</a> or learn more <a href="/about" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</a> the origin of these writings.
+            If you feel called, explore the <Link href="/books"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">Book Series</a></Link> or learn more <Link href="/about"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</a></Link> the origin of these writings.
           </p>
         </div>
 
