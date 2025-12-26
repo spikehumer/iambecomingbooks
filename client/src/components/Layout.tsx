@@ -60,7 +60,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             "Becoming is not a destination. It is a devotion."
           </p>
           <p className="text-xs text-muted-foreground/60 tracking-widest uppercase mt-4">
-            © {new Date().getFullYear()} Spike Humer. All rights reserved.
+            © 2026 SoulWord Press. All rights reserved.
           </p>
         </div>
       </footer>
