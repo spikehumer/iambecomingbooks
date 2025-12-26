@@ -15,24 +15,26 @@ export default function StartHere() {
           </p>
         </header>
 
-        <div className="prose prose-lg prose-stone prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
-          <p className="font-normal leading-loose mb-12">
+        <div className="space-y-12 text-muted-foreground/90 max-w-none text-lg leading-loose font-normal">
+          <p>
             If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
           </p>
-          <p className="font-normal leading-loose mb-12">
+          <p>
             <em>I Am Becoming</em> is not a program to follow. It is a companion for where you already are — a collection of journal entries, mantras, and reflections born from the honest journey of living and the enduring presence of love.
           </p>
-          <p className="font-normal leading-loose mb-12">
+          <p>
             This work invites you to slow down. To breathe. To honor the shape of your own becoming.
           </p>
           
-          <h3 className="text-2xl pt-8 pb-4 text-foreground/80">Being here</h3>
-          <p className="font-normal leading-loose mb-12">
-            Wander freely. Read a page, then close the tab. Stay as long as you need, or leave whenever you're ready. There is no right way to be here.
-          </p>
-          <p className="font-normal leading-loose">
-            If you feel called, explore the <Link href="/books"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">forthcoming volumes of the I Am Becoming Book Series</a></Link> or learn more <Link href="/about"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</a></Link> the origin of these writings.
-          </p>
+          <div>
+            <h3 className="text-2xl pt-8 pb-4 text-foreground/80 font-serif font-normal">Being here</h3>
+            <p className="mb-12">
+              Wander freely. Read a page, then close the tab. Stay as long as you need, or leave whenever you're ready. There is no right way to be here.
+            </p>
+            <p>
+              If you feel called, explore the <Link href="/books"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">forthcoming volumes of the I Am Becoming Book Series</a></Link> or learn more <Link href="/about"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</a></Link> the origin of these writings.
+            </p>
+          </div>
         </div>
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-50 my-12" />
