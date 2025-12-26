@@ -29,7 +29,7 @@ export default function Home() {
             <span className="text-muted-foreground/90">before the rising.</span>
           </h1>
           
-          <h2 className="text-lg md:text-xl font-normal text-muted-foreground/90 leading-relaxed max-w-lg mx-auto">
+          <h2 className="text-[1.2rem] md:text-[1.35rem] font-normal text-muted-foreground/90 leading-relaxed max-w-lg mx-auto">
             A quiet space for the <em>I Am Becoming</em> book series. <br/>
             Reflections, mantras, and sacred writing for the journey of awakening, healing, and love.
           </h2>

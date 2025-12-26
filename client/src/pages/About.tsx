@@ -25,7 +25,7 @@ export default function About() {
           </header>
         </div>
 
-        <div className="space-y-8 text-muted-foreground/90 border-l border-accent/20 pl-6 md:pl-10 text-lg leading-loose font-normal">
+        <div className="space-y-8 text-muted-foreground/90 border-l border-accent/20 pl-6 md:pl-10 text-[1.17rem] leading-loose font-normal">
           <p>
             I write to remember what I’ve always known but sometimes forget.
           </p>

@@ -10,12 +10,12 @@ export default function StartHere() {
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">
             Welcome to this quiet space.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground/90 font-normal italic">
+          <p className="text-[1.17rem] md:text-[1.3rem] text-muted-foreground/90 font-normal italic">
             There is no rush here. No destination to reach.
           </p>
         </header>
 
-        <div className="space-y-12 text-muted-foreground/90 max-w-none text-lg leading-loose font-normal">
+        <div className="space-y-12 text-muted-foreground/90 max-w-none text-[1.17rem] leading-loose font-normal">
           <p>
             If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
           </p>

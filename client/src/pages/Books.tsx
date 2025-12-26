@@ -27,7 +27,7 @@ export default function Books() {
             </p>
           </div>
 
-          <div className="space-y-8 text-muted-foreground/90 max-w-md mx-auto lg:mx-0 text-lg leading-loose font-normal">
+          <div className="space-y-8 text-muted-foreground/90 max-w-md mx-auto lg:mx-0 text-[1.17rem] leading-loose font-normal">
             <p>
               <em>"Becoming is not a destination. It is a devotion."</em>
             </p>

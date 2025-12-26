@@ -30,7 +30,7 @@ export default function Receive() {
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">
             Receive
           </h1>
-          <p className="text-lg font-normal text-muted-foreground/90 leading-relaxed">
+          <p className="text-[1.17rem] font-normal text-muted-foreground/90 leading-relaxed">
             A gentle invitation to stay connected. <br/>
             Receive occasional updates on the <em>I Am Becoming</em> series.
           </p>
