@@ -133,7 +133,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-accent/30 selection:text-foreground;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-accent/30 selection:text-foreground text-lg;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal tracking-wide; /* Increased weight from light to normal */
