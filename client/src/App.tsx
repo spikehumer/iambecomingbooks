@@ -5,12 +5,19 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-
+import StartHere from "./pages/StartHere";
+import Books from "./pages/Books";
+import About from "./pages/About";
+import Receive from "./pages/Receive";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/start-here"} component={StartHere} />
+      <Route path={"/books"} component={Books} />
+      <Route path={"/about"} component={About} />
+      <Route path={"/receive"} component={Receive} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
