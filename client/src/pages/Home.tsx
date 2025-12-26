@@ -1,7 +1,13 @@
 import Layout from "@/components/Layout";
 import { Link } from "wouter";
 
+import { useEffect } from "react";
+
 export default function Home() {
+  useEffect(() => {
+    document.title = "I Am Becoming | The Waking by Spike Humer";
+  }, []);
+
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-12 md:gap-20">
@@ -23,10 +29,10 @@ export default function Home() {
             <span className="text-muted-foreground">before the rising.</span>
           </h1>
           
-          <p className="text-lg md:text-xl font-normal text-muted-foreground leading-relaxed max-w-lg mx-auto">
+          <h2 className="text-lg md:text-xl font-normal text-muted-foreground leading-relaxed max-w-lg mx-auto">
             A quiet space for the <em>I Am Becoming</em> book series. <br/>
             Reflections, mantras, and sacred writing for the journey of grief, healing, and love.
-          </p>
+          </h2>
 
           <div className="pt-8">
             <Link href="/start-here">
