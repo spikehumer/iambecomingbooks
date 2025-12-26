@@ -15,7 +15,7 @@ export default function StartHere() {
           </p>
         </header>
 
-        <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
+        <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose prose-p:mb-8 prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
           <p>
             If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
           </p>
