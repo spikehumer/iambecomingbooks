@@ -32,8 +32,10 @@ export default function Books() {
               <em>"Becoming is not a destination. It is a devotion."</em>
             </p>
             <p>
-              <strong>The Waking</strong> is the first volume in the <em>I Am Becoming</em> series. 
-              It is a collection of 20 intimate entries that traverse the landscape of loss, offering a hand to hold in the dark.
+              <strong>The Waking</strong> is the first volume in the <em>I Am Becoming</em> series, a collection of nine books designed to accompany you through the unfolding seasons of the self.
+            </p>
+            <p>
+              This first offering contains 20 intimate entries that traverse the landscape of loss, offering a hand to hold in the dark.
             </p>
             <p>
               Written for those who are learning to rise gently, this book creates a sanctuary for the heart. 
@@ -52,8 +54,8 @@ export default function Books() {
             <div className="w-12 h-px bg-border mx-auto lg:mx-0" />
             
             <p className="text-xs text-muted-foreground/60 font-light max-w-xs mx-auto lg:mx-0">
-              ISBN: [Pending] <br/>
-              Published by [Imprint Name]
+              ISBN: 978-0-9855419-9-6 <br/>
+              Published by SoulWord Press
             </p>
           </div>
         </div>
