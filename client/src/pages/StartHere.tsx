@@ -15,25 +15,22 @@ export default function StartHere() {
           </p>
         </header>
 
-        <div className="prose prose-lg prose-stone prose-p:font-light prose-p:leading-loose prose-p:mb-12 prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
-          <p>
-            If you have found your way here, you may be seeking a moment of stillness in a noisy world.
+        <div className="prose prose-lg prose-stone prose-headings:font-serif prose-headings:font-normal max-w-none text-muted-foreground/90">
+          <p className="font-light leading-loose mb-12">
+            If you have found your way here, you may be seeking a moment of stillness in a noisy world. Or perhaps you are simply ready to begin.
           </p>
-          <p>
-            Or perhaps you are simply ready to begin.
-          </p>
-          <p>
+          <p className="font-light leading-loose mb-12">
             <em>I Am Becoming</em> is not a program to follow. It is a companion for where you already are — a collection of journal entries, mantras, and reflections born from the honest journey of living and the enduring presence of love.
           </p>
-          <p>
+          <p className="font-light leading-loose mb-12">
             This work invites you to slow down. To breathe. To honor the shape of your own becoming.
           </p>
           
           <h3 className="text-2xl pt-8 pb-4 text-foreground/80">Being here</h3>
-          <p>
+          <p className="font-light leading-loose mb-12">
             Wander freely. Read a page, then close the tab. Stay as long as you need, or leave whenever you're ready. There is no right way to be here.
           </p>
-          <p>
+          <p className="font-light leading-loose">
             If you feel called, explore the <Link href="/books"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">forthcoming volumes of the I Am Becoming Book Series</a></Link> or learn more <Link href="/about"><a className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</a></Link> the origin of these writings.
           </p>
         </div>
