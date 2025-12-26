@@ -35,11 +35,11 @@ export default function Books() {
               <strong>The Waking</strong> is the first volume in the <em>I Am Becoming</em> series, a collection of nine books designed to accompany you through the unfolding seasons of the self.
             </p>
             <p>
-              This first offering contains 20 intimate entries that traverse the landscape of loss, offering a hand to hold in the dark.
+              This first offering contains 20 intimate entries that traverse the landscape of the heart, offering a hand to hold in the quiet moments.
             </p>
             <p>
-              Written for those who are learning to rise gently, this book creates a sanctuary for the heart. 
-              It acknowledges the pain of grief while illuminating the enduring presence of love.
+              Written for those who are learning to rise gently, this book creates a sanctuary for the spirit. 
+              It honors the depth of our experience while illuminating the enduring presence of love.
             </p>
           </div>
 

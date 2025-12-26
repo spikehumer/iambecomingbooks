@@ -31,7 +31,7 @@ export default function Home() {
           
           <h2 className="text-lg md:text-xl font-normal text-muted-foreground leading-relaxed max-w-lg mx-auto">
             A quiet space for the <em>I Am Becoming</em> book series. <br/>
-            Reflections, mantras, and sacred writing for the journey of grief, healing, and love.
+            Reflections, mantras, and sacred writing for the journey of awakening, healing, and love.
           </h2>
 
           <div className="pt-8">
