@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 export default function Books() {
   return (
     <Layout>
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center lg:items-start py-8 md:py-16">
+      <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center lg:items-start py-12 md:py-24">
         
         {/* Book Cover Image - Floating and Soft */}
         <div className="w-full max-w-md lg:w-1/2 flex justify-center lg:justify-end">
@@ -18,8 +18,8 @@ export default function Books() {
         </div>
 
         {/* Book Details - Minimal and Descriptive */}
-        <div className="w-full lg:w-1/2 space-y-10 text-center lg:text-left">
-          <div className="space-y-2">
+        <div className="w-full lg:w-1/2 space-y-12 text-center lg:text-left">
+          <div className="space-y-4">
             <h2 className="text-sm tracking-[0.2em] uppercase text-muted-foreground">Book One</h2>
             <h1 className="text-4xl md:text-5xl font-serif text-foreground">The Waking</h1>
             <p className="text-lg font-serif italic text-muted-foreground/80 pt-2">
@@ -27,7 +27,7 @@ export default function Books() {
             </p>
           </div>
 
-          <div className="prose prose-lg prose-stone prose-p:font-normal prose-p:leading-loose text-muted-foreground/90 max-w-md mx-auto lg:mx-0">
+          <div className="prose prose-lg prose-stone prose-p:font-normal prose-p:leading-loose prose-p:mb-8 text-muted-foreground/90 max-w-md mx-auto lg:mx-0">
             <p>
               <em>"Becoming is not a destination. It is a devotion."</em>
             </p>
@@ -43,7 +43,7 @@ export default function Books() {
             </p>
           </div>
 
-          <div className="pt-4 space-y-4">
+          <div className="pt-8 space-y-6">
             <div className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start items-center">
               <span className="text-sm font-normal text-muted-foreground/90 tracking-wide">
                 Available soon in Paperback & Kindle
