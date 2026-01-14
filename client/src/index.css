@@ -52,7 +52,7 @@
   /* Accent: Pale Gold (#D4C4A8) - desaturated metallic */
   
   --background: oklch(0.97 0.01 260); /* #F5F7FA equivalent */
-  --foreground: oklch(0.25 0.02 260); /* Darker slate for better contrast */
+  --foreground: oklch(0.20 0.02 260); /* Deep charcoal for strong presence */
   
   --card: oklch(0.98 0.005 260);
   --card-foreground: oklch(0.35 0.02 260);
@@ -67,7 +67,7 @@
   --secondary-foreground: oklch(0.35 0.02 260);
   
   --muted: oklch(0.92 0.01 260);
-  --muted-foreground: oklch(0.45 0.02 260); /* Darker muted text */
+  --muted-foreground: oklch(0.35 0.02 260); /* Darker slate for better readability */
   
   --accent: oklch(0.85 0.05 85); /* Pale Gold-ish */
   --accent-foreground: oklch(0.35 0.02 260);
