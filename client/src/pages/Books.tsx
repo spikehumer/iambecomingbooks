@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 export default function Books() {
   return (
     <Layout>
-      <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center lg:items-start py-12 md:py-24">
+      <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center lg:items-start py-12 md:py-24 animate-fade-in">
         
         {/* Book Cover Image - Floating and Soft */}
         <div className="w-full max-w-md lg:w-1/2 flex justify-center lg:justify-end">

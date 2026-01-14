@@ -24,7 +24,7 @@ export default function Receive() {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-16">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-16 animate-fade-in">
         
         <div className="space-y-4 max-w-lg mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">

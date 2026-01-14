@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 export default function About() {
   return (
     <Layout>
-      <div className="drift-content space-y-12 py-8 md:py-12">
+      <div className="drift-content space-y-12 py-8 md:py-12 animate-fade-in">
         
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
           {/* Author Image - Small and Artistic */}

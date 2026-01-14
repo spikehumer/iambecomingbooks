@@ -23,7 +23,7 @@ export default function Home() {
         </div>
 
         {/* Text Content - Centered but drifting */}
-        <div className="max-w-2xl text-center space-y-8 px-4">
+        <div className="max-w-2xl text-center space-y-8 px-4 animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-foreground/90 leading-tight">
             The waking comes <br/>
             <span className="text-muted-foreground/90">before the rising.</span>

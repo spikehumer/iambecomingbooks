@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function StartHere() {
   return (
     <Layout>
-      <div className="drift-content space-y-12 md:space-y-16 py-8 md:py-12">
+      <div className="drift-content space-y-12 md:space-y-16 py-8 md:py-12 animate-fade-in">
         
         <header className="space-y-6 border-l border-accent/30 pl-6 md:pl-10 py-2">
           <h1 className="text-3xl md:text-4xl font-serif text-foreground">
