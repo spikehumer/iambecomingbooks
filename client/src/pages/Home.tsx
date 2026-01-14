@@ -35,10 +35,8 @@ export default function Home() {
           </h2>
 
           <div className="pt-8">
-            <Link href="/start-here">
-              <a className="inline-block px-8 py-3 border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm">
+            <Link href="/start-here" className="inline-block px-8 py-3 border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm">
                 Begin Here
-              </a>
             </Link>
           </div>
         </div>
