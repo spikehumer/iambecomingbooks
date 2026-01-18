@@ -40,6 +40,50 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* Excerpt Section - A Glimpse Inside */}
+        <div className="w-full max-w-3xl mt-12 md:mt-20 pt-12 md:pt-20 border-t border-border/30">
+          <div className="space-y-8 px-4 md:px-0">
+            <div className="space-y-2">
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground/60 font-normal">
+                A Glimpse Inside
+              </p>
+              <h3 className="text-2xl md:text-3xl font-serif text-foreground">
+                From The Waking
+              </h3>
+            </div>
+
+            <div className="space-y-6 max-w-2xl">
+              <p className="text-lg md:text-xl font-serif italic text-foreground/80 leading-relaxed">
+                The waking comes before the rising.
+              </p>
+
+              <div className="space-y-4 text-[1.1rem] md:text-[1.15rem] text-muted-foreground/85 leading-relaxed font-normal">
+                <p>
+                  Before we stand, before we move into the day, there is a moment of opening. A moment where we remember ourselves. Not the version we perform, not the self we show the world—but the quiet presence that has been here all along, waiting beneath the noise.
+                </p>
+
+                <p>
+                  This is where the work begins. Not in the doing, but in the returning. To breath. To stillness. To the simple truth that we are enough, exactly as we are in this moment.
+                </p>
+
+                <p>
+                  The becoming is not about becoming someone new. It is about waking to who we have always been. It is about honoring the shape of your own journey, the pace of your own unfolding.
+                </p>
+
+                <p>
+                  There is no rush here. No destination to reach. Only the gentle invitation to slow down, to breathe, and to remember.
+                </p>
+              </div>
+
+              <div className="pt-6">
+                <Link href="/start-here" className="inline-block text-sm md:text-base text-muted-foreground hover:text-foreground underline decoration-accent/40 underline-offset-4 transition-colors duration-500 font-normal">
+                  Explore the full work →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

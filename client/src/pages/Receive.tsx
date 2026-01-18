@@ -8,18 +8,38 @@ export default function Receive() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setEmail("");
+        toast.success("Thank you. You have been added to the list.");
+      } else if (data.message?.includes("already subscribed")) {
+        toast.info("You are already subscribed to our mailing list.");
+        setEmail("");
+      } else {
+        toast.error(data.error || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
       setIsSubmitting(false);
-      setEmail("");
-      toast.success("Thank you. You have been added to the list.");
-    }, 1000);
+    }
   };
 
   return (

@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Start Here", path: "/start-here" },
-    { name: "The Book Series", path: "/books" },
+    { name: "The Book Series", path: "/the-book-series" },
     { name: "About", path: "/about" },
     { name: "Receive", path: "/receive" },
   ];
@@ -17,29 +17,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Navigation - Minimal and Top Aligned */}
       <header className="w-full py-8 md:py-12 animate-fade-in">
         <div className="container flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
-          <Link href="/">
-            <a className="font-serif text-2xl md:text-3xl tracking-wider hover:text-foreground/80 transition-colors duration-500">
-              I Am Becoming
-            </a>
+          <Link href="/" className="font-serif text-2xl md:text-3xl tracking-wider hover:text-foreground/80 transition-colors duration-500">
+            I Am Becoming
           </Link>
           
           <nav>
             <ul className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm md:text-base font-normal tracking-widest uppercase text-muted-foreground">
               {navItems.map((item) => (
                 <li key={item.path}>
-                  <Link href={item.path}>
-                    <a 
-                      className={cn(
-                        "hover:text-foreground transition-colors duration-500 relative group py-1",
-                        location === item.path ? "text-foreground" : ""
-                      )}
-                    >
-                      {item.name}
-                      <span className={cn(
-                        "absolute bottom-0 left-0 w-full h-[1px] bg-accent transform scale-x-0 transition-transform duration-500 origin-left group-hover:scale-x-100",
-                        location === item.path ? "scale-x-100 bg-foreground/20" : ""
-                      )} />
-                    </a>
+                  <Link 
+                    href={item.path}
+                    className={cn(
+                      "hover:text-foreground transition-colors duration-500 relative group py-1 inline-block",
+                      location === item.path ? "text-foreground" : ""
+                    )}
+                  >
+                    {item.name}
+                    <span className={cn(
+                      "absolute bottom-0 left-0 w-full h-[1px] bg-accent transform scale-x-0 transition-transform duration-500 origin-left group-hover:scale-x-100",
+                      location === item.path ? "scale-x-100 bg-foreground/20" : ""
+                    )} />
                   </Link>
                 </li>
               ))}
