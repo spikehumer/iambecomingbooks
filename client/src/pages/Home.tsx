@@ -1,28 +1,43 @@
 import Layout from "@/components/Layout";
 import { Link } from "wouter";
-
 import { useEffect } from "react";
-
 export default function Home() {
   useEffect(() => {
     document.title = "I Am Becoming | The Waking by Spike Humer";
   }, []);
-
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-12 md:gap-20">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-12 md:gap-20">
         
-        {/* Hero Image Section - Ethereal and Spacious */}
-        <div className="w-full max-w-4xl overflow-hidden relative aspect-[21/9] md:aspect-[21/8] opacity-90">
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-          <img 
-            src="/images/hero-dawn.jpg" 
-            alt="Ethereal morning light" 
-            className="w-full h-full object-cover object-center opacity-80 hover:opacity-100 transition-opacity duration-[2000ms]"
-          />
+        {/* Hero Section - Book Cover Integrated */}
+        <div className="w-full max-w-6xl px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left: Ethereal Landscape */}
+            <div className="w-full overflow-hidden relative aspect-[4/3] md:aspect-[3/2] opacity-90 order-2 lg:order-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
+              <img 
+                src="/images/hero-dawn.jpg" 
+                alt="Ethereal morning light" 
+                className="w-full h-full object-cover object-center opacity-80 hover:opacity-100 transition-opacity duration-[2000ms]"
+              />
+            </div>
+            
+            {/* Right: Book Cover */}
+            <div className="w-full flex justify-center lg:justify-start order-1 lg:order-2">
+              <div className="relative group max-w-sm">
+                <div className="absolute -inset-4 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                <img 
+                  src="/images/book-covers/book-mockup-simple.jpg" 
+                  alt="I Am Becoming: The Waking - Book One" 
+                  className="relative w-full shadow-2xl shadow-muted-foreground/20 rounded-sm opacity-100 transition-all duration-700 transform hover:-translate-y-1"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Text Content - Centered but drifting */}
+        {/* Text Content - Centered */}
         <div className="max-w-2xl text-center space-y-8 px-4 animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-foreground/90 leading-tight">
             The waking comes <br/>
@@ -34,10 +49,19 @@ export default function Home() {
             Reflections, mantras, and sacred writing for the journey of awakening, healing, and love.
           </h2>
 
-          <div className="pt-8">
+          {/* CTA Buttons */}
+          <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/start-here" className="inline-block px-8 py-3 border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm">
-                Begin Here
+              Begin Here
             </Link>
+            <a 
+              href="https://www.amazon.com/s?k=the+waking+spike+humer" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/30 hover:border-accent text-accent hover:text-accent transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm"
+            >
+              Begin with Book One
+            </a>
           </div>
         </div>
 
@@ -52,30 +76,24 @@ export default function Home() {
                 From The Waking
               </h3>
             </div>
-
             <div className="space-y-6 max-w-2xl">
               <p className="text-lg md:text-xl font-serif italic text-foreground/80 leading-relaxed">
                 The waking comes before the rising.
               </p>
-
               <div className="space-y-4 text-[1.1rem] md:text-[1.15rem] text-muted-foreground/85 leading-relaxed font-normal">
                 <p>
                   Before we stand, before we move into the day, there is a moment of opening. A moment where we remember ourselves. Not the version we perform, not the self we show the world—but the quiet presence that has been here all along, waiting beneath the noise.
                 </p>
-
                 <p>
                   This is where the work begins. Not in the doing, but in the returning. To breath. To stillness. To the simple truth that we are enough, exactly as we are in this moment.
                 </p>
-
                 <p>
                   The becoming is not about becoming someone new. It is about waking to who we have always been. It is about honoring the shape of your own journey, the pace of your own unfolding.
                 </p>
-
                 <p>
                   There is no rush here. No destination to reach. Only the gentle invitation to slow down, to breathe, and to remember.
                 </p>
               </div>
-
               <div className="pt-6">
                 <Link href="/start-here" className="inline-block text-sm md:text-base text-muted-foreground hover:text-foreground underline decoration-accent/40 underline-offset-4 transition-colors duration-500 font-normal">
                   Explore the full work →

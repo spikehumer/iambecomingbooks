@@ -32,7 +32,7 @@ export default function StartHere() {
               Wander freely. Read a page, then close the tab. Stay as long as you need, or leave whenever you're ready. There is no right way to be here.
             </p>
             <p>
-              If you feel called, explore the <Link href="/the-book-series" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">forthcoming volumes of the I Am Becoming Book Series</Link> or learn more <Link href="/about" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</Link> the origin of these writings.
+              If you feel called, explore the <Link href="/the-book-series" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">volumes of the I Am Becoming Book Series</Link> or learn more <Link href="/about" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About</Link> the origin of these writings.
             </p>
           </div>
         </div>

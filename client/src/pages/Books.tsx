@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-
 export default function Books() {
   return (
     <Layout>
@@ -16,7 +15,6 @@ export default function Books() {
             />
           </div>
         </div>
-
         {/* Book Details - Minimal and Descriptive */}
         <div className="w-full lg:w-1/2 space-y-12 text-center lg:text-left">
           <div className="space-y-4">
@@ -26,7 +24,6 @@ export default function Books() {
               A Journal of Mantras, Reflections, and Sacred Writing
             </p>
           </div>
-
           <div className="space-y-8 text-muted-foreground/90 max-w-md mx-auto lg:mx-0 text-[1.17rem] leading-loose font-normal">
             <p>
               <em>"Becoming is not a destination. It is a devotion."</em>
@@ -42,11 +39,19 @@ export default function Books() {
               It honors the depth of our experience while illuminating the enduring presence of love.
             </p>
           </div>
-
           <div className="pt-8 space-y-6">
-            <div className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start items-center">
+            {/* Purchase CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
+              <a 
+                href="https://www.amazon.com/s?k=the+waking+spike+humer" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/30 hover:border-accent text-accent hover:text-accent transition-all duration-700 tracking-widest uppercase text-sm font-medium rounded-sm"
+              >
+                Begin with Book One
+              </a>
               <span className="text-sm font-normal text-muted-foreground/90 tracking-wide">
-                Available soon in Paperback & Kindle
+                Available January 23, 2026
               </span>
             </div>
             
@@ -59,7 +64,6 @@ export default function Books() {
             </p>
           </div>
         </div>
-
       </div>
     </Layout>
   );
