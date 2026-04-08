@@ -17,6 +17,7 @@ books/
 │   ├── the-companion/
 │   └── series-shared/            Materials spanning the whole series
 │
+├── the-book-of-the-soul/
 ├── the-gift-of-this-day-1/
 └── the-gift-of-this-day-2/
 ```
@@ -35,6 +36,12 @@ images/
 
 notes/                 Research, ideas, feedback, editorial notes
 ```
+
+## File Types
+
+- **Primary format**: Word documents (.docx)
+- **Also used**: PDF (.pdf)
+- **Google Docs exports**: If a file exists as both .docx and a Google Docs export, keep the .docx version and skip the duplicate unless the Google Doc has newer edits
 
 ## File Naming Suggestions
 
