@@ -1,8 +1,10 @@
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Link } from "wouter";
 
 export default function Receive() {
   const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ export default function Receive() {
     if (!email) return;
 
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch("/api/subscribe", {
         method: "POST",
@@ -44,32 +46,34 @@ export default function Receive() {
 
   return (
     <Layout>
+      <Seo path="/receive" />
+
       <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-16 animate-fade-in">
-        
         <div className="space-y-4 max-w-lg mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-serif text-foreground">
-            Receive
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-serif text-foreground">Receive</h1>
           <p className="text-[1.22rem] font-normal text-muted-foreground/90 leading-relaxed">
-            A gentle invitation to stay connected. <br/>
+            A gentle invitation to stay connected. <br />
             Receive occasional updates on the <em>I Am Becoming</em> series.
+          </p>
+          <p className="text-sm text-muted-foreground/80 leading-relaxed">
+            If you would like to spend time with the work first, you can visit the <Link href="/books" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">Books page</Link> or learn more <Link href="/about" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About Spike Humer</Link> before joining the circle.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 px-4">
           <div className="space-y-2">
-            <Input 
-              type="email" 
-              placeholder="your@email.com" 
+            <Input
+              type="email"
+              placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-normal transition-colors text-[1.1rem]"
               required
             />
           </div>
-          
-          <Button 
-            type="submit" 
+
+          <Button
+            type="submit"
             disabled={isSubmitting}
             variant="ghost"
             className="w-full hover:bg-accent/10 text-muted-foreground hover:text-foreground tracking-widest uppercase text-xs py-6 transition-all duration-500"
@@ -81,7 +85,6 @@ export default function Receive() {
         <p className="text-xs text-muted-foreground/60 font-normal max-w-xs mx-auto pt-8">
           No spam. No noise. Just the work.
         </p>
-
       </div>
     </Layout>
   );
