@@ -29,9 +29,9 @@ export default function Receive() {
 
       if (response.ok && data.success) {
         setEmail("");
-        toast.success("Thank you. You have been added to the list.");
+        toast.success("Thank you. You have been added to the circle.");
       } else if (data.message?.includes("already subscribed")) {
-        toast.info("You are already subscribed to our mailing list.");
+        toast.info("You are already part of the circle.");
         setEmail("");
       } else {
         toast.error(data.error || "Failed to subscribe. Please try again.");
@@ -48,44 +48,61 @@ export default function Receive() {
     <Layout>
       <Seo path="/receive" />
 
-      <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 text-center space-y-16 animate-fade-in">
-        <div className="space-y-4 max-w-lg mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-serif text-foreground">Receive</h1>
-          <p className="text-[1.22rem] font-normal text-muted-foreground/90 leading-relaxed">
-            A gentle invitation to stay connected. <br />
-            Receive occasional updates on the <em>I Am Becoming</em> series.
+      <section className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center gap-12 py-10 text-center animate-fade-in">
+        <div className="space-y-5 px-4">
+          <p className="text-xs tracking-[0.24em] uppercase text-muted-foreground/65">Stay Close</p>
+          <h1 className="text-4xl md:text-5xl font-serif text-foreground">Receive</h1>
+          <p className="mx-auto max-w-xl text-[1.12rem] md:text-[1.2rem] font-normal leading-relaxed text-muted-foreground/90">
+            Occasional notes of quiet presence — reflections, not noise.
           </p>
-          <p className="text-sm text-muted-foreground/80 leading-relaxed">
-            If you would like to spend time with the work first, you can visit the <Link href="/books" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">Books page</Link> or learn more <Link href="/about" className="underline decoration-accent/50 underline-offset-4 hover:text-foreground transition-colors">About Spike Humer</Link> before joining the circle.
+          <p className="mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground/75">
+            If you would like to spend time with the books first, you can visit the{" "}
+            <Link
+              href="/books"
+              className="underline decoration-accent/50 underline-offset-4 transition-colors hover:text-foreground"
+            >
+              Inside the Pages
+            </Link>{" "}
+            or read more about{" "}
+            <Link
+              href="/about"
+              className="underline decoration-accent/50 underline-offset-4 transition-colors hover:text-foreground"
+            >
+              Spike Humer
+            </Link>
+            .
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 px-4">
-          <div className="space-y-2">
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6 px-4">
+          <label className="block space-y-3 text-left">
+            <span className="block text-xs tracking-[0.22em] uppercase text-muted-foreground/65">
+              Email Address
+            </span>
             <Input
               type="email"
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-center bg-transparent border-b border-border border-t-0 border-x-0 rounded-none focus-visible:ring-0 focus-visible:border-accent px-4 py-3 placeholder:text-muted-foreground/40 font-normal transition-colors text-[1.1rem]"
+              className="h-14 rounded-full border-border/70 bg-background/80 px-6 text-base text-center placeholder:text-muted-foreground/45 focus-visible:ring-0 focus-visible:border-accent"
               required
             />
-          </div>
+          </label>
 
           <Button
             type="submit"
             disabled={isSubmitting}
             variant="ghost"
-            className="w-full hover:bg-accent/10 text-muted-foreground hover:text-foreground tracking-widest uppercase text-xs py-6 transition-all duration-500"
+            className="w-full rounded-full border border-accent/35 bg-accent/10 py-7 text-xs font-medium uppercase tracking-[0.22em] text-foreground transition-all duration-500 hover:bg-accent/20 hover:text-foreground"
           >
-            {isSubmitting ? "Sending..." : "Join the Circle"}
+            {isSubmitting ? "Entering..." : "Enter the Circle"}
           </Button>
         </form>
 
-        <p className="text-xs text-muted-foreground/60 font-normal max-w-xs mx-auto pt-8">
-          No spam. No noise. Just the work.
+        <p className="max-w-sm px-4 text-xs leading-relaxed text-muted-foreground/65">
+          We respect your inbox as a sacred space. Unsubscribe at any time.
         </p>
-      </div>
+      </section>
     </Layout>
   );
 }

@@ -9,8 +9,14 @@ const About = lazy(() => import("./pages/About"));
 const Books = lazy(() => import("./pages/Books"));
 const Home = lazy(() => import("./pages/Home"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Privacy = lazy(() => import("./pages/Privacy"));
 const Receive = lazy(() => import("./pages/Receive"));
 const StartHere = lazy(() => import("./pages/StartHere"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Contact = lazy(() => import("./pages/Contact"));
+const TheCompanion = lazy(() => import("./pages/TheCompanion"));
+const TheStanding = lazy(() => import("./pages/TheStanding"));
+const TheWaking = lazy(() => import("./pages/TheWaking"));
 
 function LegacyBooksRedirect() {
   useEffect(() => {
@@ -36,6 +42,12 @@ function Router() {
         <Route path="/the-book-series" component={LegacyBooksRedirect} />
         <Route path="/about" component={About} />
         <Route path="/receive" component={Receive} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/the-waking" component={TheWaking} />
+        <Route path="/the-companion" component={TheCompanion} />
+        <Route path="/the-standing" component={TheStanding} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

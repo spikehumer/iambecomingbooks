@@ -1,4 +1,5 @@
 import { SITE_NAME, SITE_URL, buildAbsoluteUrl, getSeoEntry, normalizePublicPath } from "./seo";
+import { bookPageContent } from "./siteContent";
 
 const authorPerson = {
   "@type": "Person",
@@ -8,9 +9,10 @@ const authorPerson = {
   image: buildAbsoluteUrl("/images/author-portrait-placeholder.jpg"),
   jobTitle: "Author",
   description:
-    "Spike Humer is the author of I Am Becoming Books, a reflective series devoted to presence, becoming, and inner life.",
+    "Spike Humer is the author of the I Am Becoming series, a contemplative body of work devoted to reflection, presence, and remembering.",
   worksFor: {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "SoulWord Press",
     url: SITE_URL,
   },
@@ -28,59 +30,86 @@ const publisherOrganization = {
   },
 };
 
-const books = [
-  {
+const website = {
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: "A contemplative nine-book journey by Spike Humer.",
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  author: { "@id": `${SITE_URL}/about#person` },
+};
+
+const series = {
+  "@type": "CreativeWorkSeries",
+  "@id": `${SITE_URL}/books#series`,
+  name: "I Am Becoming",
+  author: { "@id": `${SITE_URL}/about#person` },
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  url: buildAbsoluteUrl("/books"),
+};
+
+const bookSchemas = {
+  "/the-waking": {
     "@type": "Book",
-    "@id": `${SITE_URL}/books#the-waking`,
-    name: "The Waking",
+    "@id": `${SITE_URL}/the-waking#book`,
+    name: bookPageContent["/the-waking"].title,
     author: { "@id": `${SITE_URL}/about#person` },
     publisher: { "@id": `${SITE_URL}/#organization` },
-    isbn: "978-0-9855419-9-6",
-    image: buildAbsoluteUrl("/images/book-3d.jpg"),
+    image: buildAbsoluteUrl(bookPageContent["/the-waking"].coverImage),
     bookEdition: "Book One",
-    description:
-      "The Waking is the first volume in the I Am Becoming series by Spike Humer, a journal of mantras, reflections, and sacred writing.",
-    url: buildAbsoluteUrl("/books"),
+    description: getSeoEntry("/the-waking").description,
+    isPartOf: { "@id": `${SITE_URL}/books#series` },
+    url: buildAbsoluteUrl("/the-waking"),
   },
-  {
+  "/the-companion": {
     "@type": "Book",
-    "@id": `${SITE_URL}/books#the-companion`,
-    name: "The Companion",
+    "@id": `${SITE_URL}/the-companion#book`,
+    name: bookPageContent["/the-companion"].title,
     author: { "@id": `${SITE_URL}/about#person` },
     publisher: { "@id": `${SITE_URL}/#organization` },
-    image: buildAbsoluteUrl("/images/book-cover-mockup.jpg"),
-    description:
-      "The Companion is a collection of reflections for presence, becoming, and inner alignment within the I Am Becoming series.",
+    image: buildAbsoluteUrl(bookPageContent["/the-companion"].coverImage),
+    description: getSeoEntry("/the-companion").description,
     isPartOf: { "@id": `${SITE_URL}/books#series` },
-    url: buildAbsoluteUrl("/books"),
+    url: buildAbsoluteUrl("/the-companion"),
   },
-  {
+  "/the-standing": {
     "@type": "Book",
-    "@id": `${SITE_URL}/books#the-standing`,
-    name: "The Standing",
+    "@id": `${SITE_URL}/the-standing#book`,
+    name: bookPageContent["/the-standing"].title,
     author: { "@id": `${SITE_URL}/about#person` },
     publisher: { "@id": `${SITE_URL}/#organization` },
-    image: buildAbsoluteUrl("/images/book-cover-mockup.jpg"),
-    description:
-      "The Standing is a future volume in the I Am Becoming series focused on grounding, remaining, and living more fully.",
+    image: buildAbsoluteUrl(bookPageContent["/the-standing"].coverImage),
+    bookEdition: "Book Three",
+    description: getSeoEntry("/the-standing").description,
     isPartOf: { "@id": `${SITE_URL}/books#series` },
-    url: buildAbsoluteUrl("/books"),
+    url: buildAbsoluteUrl("/the-standing"),
   },
-];
+} as const;
 
 function buildBreadcrumb(path: string) {
   const normalizedPath = normalizePublicPath(path);
   const labels: Record<string, string> = {
     "/": "Home",
     "/start-here": "Start Here",
-    "/books": "Books",
+    "/books": "Inside the Pages",
     "/about": "About",
     "/receive": "Receive",
+    "/privacy": "Privacy Policy",
+    "/terms": "Terms of Use",
+    "/contact": "Contact",
+    "/the-waking": "The Waking",
+    "/the-companion": "The Companion",
+    "/the-standing": "The Standing",
   };
 
   const trail = [{ name: "Home", item: buildAbsoluteUrl("/") }];
 
   if (normalizedPath !== "/") {
+    if (["/the-waking", "/the-companion", "/the-standing"].includes(normalizedPath)) {
+      trail.push({ name: "Inside the Pages", item: buildAbsoluteUrl("/books") });
+    }
+
     trail.push({
       name: labels[normalizedPath],
       item: buildAbsoluteUrl(normalizedPath),
@@ -107,12 +136,7 @@ function buildWebPage(path: string, pageType: "WebPage" | "CollectionPage") {
     name: seo.title,
     description: seo.description,
     url: seo.canonicalUrl,
-    isPartOf: {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: seo.openGraphImage,
@@ -123,17 +147,6 @@ function buildWebPage(path: string, pageType: "WebPage" | "CollectionPage") {
 
 export function getStructuredData(path: string) {
   const normalizedPath = normalizePublicPath(path);
-  const seo = getSeoEntry(normalizedPath);
-
-  const website = {
-    "@type": "WebSite",
-    "@id": `${SITE_URL}/#website`,
-    name: SITE_NAME,
-    url: SITE_URL,
-    description: "A reflective book journey by Spike Humer.",
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    author: { "@id": `${SITE_URL}/about#person` },
-  };
 
   if (normalizedPath === "/books") {
     return {
@@ -142,17 +155,10 @@ export function getStructuredData(path: string) {
         website,
         publisherOrganization,
         authorPerson,
-        {
-          "@type": "CreativeWorkSeries",
-          "@id": `${SITE_URL}/books#series`,
-          name: "I Am Becoming",
-          author: { "@id": `${SITE_URL}/about#person` },
-          publisher: { "@id": `${SITE_URL}/#organization` },
-          url: seo.canonicalUrl,
-        },
+        series,
         buildWebPage("/books", "CollectionPage"),
         buildBreadcrumb("/books"),
-        ...books,
+        ...Object.values(bookSchemas),
       ],
     };
   }
@@ -164,15 +170,25 @@ export function getStructuredData(path: string) {
     };
   }
 
-  if (normalizedPath === "/") {
+  if (normalizedPath in bookSchemas) {
+    const bookPath = normalizedPath as keyof typeof bookSchemas;
+
     return {
       "@context": "https://schema.org",
-      "@graph": [website, publisherOrganization, authorPerson, buildWebPage("/", "WebPage"), buildBreadcrumb("/")],
+      "@graph": [
+        website,
+        publisherOrganization,
+        authorPerson,
+        series,
+        bookSchemas[bookPath],
+        buildWebPage(bookPath, "WebPage"),
+        buildBreadcrumb(bookPath),
+      ],
     };
   }
 
   return {
     "@context": "https://schema.org",
-    "@graph": [website, publisherOrganization, buildWebPage(normalizedPath, "WebPage"), buildBreadcrumb(normalizedPath)],
+    "@graph": [website, publisherOrganization, authorPerson, buildWebPage(normalizedPath, "WebPage"), buildBreadcrumb(normalizedPath)],
   };
 }
