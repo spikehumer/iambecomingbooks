@@ -4,8 +4,21 @@ import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import axios from "axios";
-import { LEGACY_ROUTE_REDIRECTS, SITE_URL, escapeHtml, getSeoEntry } from "../shared/seo";
+import {
+  LEGACY_ROUTE_REDIRECTS,
+  SITE_URL,
+  escapeHtml,
+  getSeoEntry,
+} from "../shared/seo";
 import { getStructuredData } from "../shared/structuredData";
+import { isMutatingTool } from "../shared/trading";
+import {
+  RobinhoodMcpError,
+  callTool,
+  connectAndListTools,
+  getEndpoint,
+  isConfigured,
+} from "./robinhoodMcp";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,20 +39,20 @@ function injectSeoTemplate(template: string, pathname: string) {
   const structuredData = JSON.stringify(getStructuredData(pathname));
 
   const replacements: Record<string, string> = {
-    "__SEO_TITLE__": escapeHtml(seo.title),
-    "__SEO_DESCRIPTION__": escapeHtml(seo.description),
-    "__SEO_CANONICAL__": escapeHtml(seo.canonicalUrl),
-    "__SEO_OG_TITLE__": escapeHtml(seo.title),
-    "__SEO_OG_DESCRIPTION__": escapeHtml(seo.description),
-    "__SEO_OG_URL__": escapeHtml(seo.openGraphUrl),
-    "__SEO_OG_IMAGE__": escapeHtml(seo.openGraphImage),
-    "__SEO_OG_TYPE__": escapeHtml(seo.type ?? "website"),
-    "__SEO_TWITTER_TITLE__": escapeHtml(seo.title),
-    "__SEO_TWITTER_DESCRIPTION__": escapeHtml(seo.description),
-    "__SEO_TWITTER_URL__": escapeHtml(seo.twitterUrl),
-    "__SEO_TWITTER_IMAGE__": escapeHtml(seo.twitterImage),
-    "__SEO_STRUCTURED_DATA__": structuredData,
-    "__ANALYTICS_SCRIPT__": buildAnalyticsScript(),
+    __SEO_TITLE__: escapeHtml(seo.title),
+    __SEO_DESCRIPTION__: escapeHtml(seo.description),
+    __SEO_CANONICAL__: escapeHtml(seo.canonicalUrl),
+    __SEO_OG_TITLE__: escapeHtml(seo.title),
+    __SEO_OG_DESCRIPTION__: escapeHtml(seo.description),
+    __SEO_OG_URL__: escapeHtml(seo.openGraphUrl),
+    __SEO_OG_IMAGE__: escapeHtml(seo.openGraphImage),
+    __SEO_OG_TYPE__: escapeHtml(seo.type ?? "website"),
+    __SEO_TWITTER_TITLE__: escapeHtml(seo.title),
+    __SEO_TWITTER_DESCRIPTION__: escapeHtml(seo.description),
+    __SEO_TWITTER_URL__: escapeHtml(seo.twitterUrl),
+    __SEO_TWITTER_IMAGE__: escapeHtml(seo.twitterImage),
+    __SEO_STRUCTURED_DATA__: structuredData,
+    __ANALYTICS_SCRIPT__: buildAnalyticsScript(),
   };
 
   return Object.entries(replacements).reduce(
@@ -76,7 +89,8 @@ async function startServer() {
     try {
       const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
       const mailchimpListId = process.env.MAILCHIMP_LIST_ID;
-      const mailchimpServerPrefix = process.env.MAILCHIMP_SERVER_PREFIX || "us1";
+      const mailchimpServerPrefix =
+        process.env.MAILCHIMP_SERVER_PREFIX || "us1";
 
       if (!mailchimpApiKey || !mailchimpListId) {
         console.error("Mailchimp credentials not configured");
@@ -108,7 +122,10 @@ async function startServer() {
         data: response.data,
       });
     } catch (error: any) {
-      console.error("Mailchimp subscription error:", error.response?.data || error.message);
+      console.error(
+        "Mailchimp subscription error:",
+        error.response?.data || error.message
+      );
 
       if (error.response?.status === 400) {
         const mailchimpError = error.response.data;
@@ -123,6 +140,96 @@ async function startServer() {
       return res.status(500).json({
         error: "Failed to subscribe. Please try again later.",
       });
+    }
+  });
+
+  // --- Robinhood trading (MCP) --------------------------------------------
+  // These endpoints proxy to Robinhood's trading MCP server. They are only
+  // functional when ROBINHOOD_MCP_TOKEN is set; otherwise they report an
+  // unconfigured status instead of erroring, mirroring the Mailchimp pattern.
+
+  function sendMcpError(res: express.Response, error: unknown) {
+    if (error instanceof RobinhoodMcpError) {
+      return res.status(error.status).json({ error: error.message });
+    }
+    console.error("Trading MCP error:", error);
+    return res.status(500).json({ error: "Unexpected trading service error." });
+  }
+
+  app.get("/api/trading/status", async (_req, res) => {
+    const endpoint = getEndpoint();
+
+    if (!isConfigured()) {
+      return res.status(200).json({ configured: false, endpoint });
+    }
+
+    try {
+      const { serverName, serverVersion, tools } = await connectAndListTools();
+      return res.status(200).json({
+        configured: true,
+        connected: true,
+        endpoint,
+        serverName,
+        serverVersion,
+        toolCount: tools.length,
+      });
+    } catch (error) {
+      return res.status(200).json({
+        configured: true,
+        connected: false,
+        endpoint,
+        error:
+          error instanceof RobinhoodMcpError
+            ? error.message
+            : "Could not connect to the trading service.",
+      });
+    }
+  });
+
+  app.get("/api/trading/tools", async (_req, res) => {
+    try {
+      const { tools } = await connectAndListTools();
+      return res.status(200).json({
+        tools: tools.map(tool => ({
+          ...tool,
+          mutating: isMutatingTool(tool.name),
+        })),
+      });
+    } catch (error) {
+      return sendMcpError(res, error);
+    }
+  });
+
+  app.post("/api/trading/call", async (req, res) => {
+    const { name, arguments: args, confirm } = req.body ?? {};
+
+    if (!name || typeof name !== "string") {
+      return res.status(400).json({ error: "A tool `name` is required." });
+    }
+    if (
+      args !== undefined &&
+      (typeof args !== "object" || args === null || Array.isArray(args))
+    ) {
+      return res.status(400).json({ error: "`arguments` must be an object." });
+    }
+
+    // Gate state-changing tools (placing/cancelling orders, transfers) behind an
+    // explicit confirmation so an accidental request can never move money.
+    if (isMutatingTool(name) && confirm !== true) {
+      return res.status(428).json({
+        error: `"${name}" can change your account. Re-send with { "confirm": true } to proceed.`,
+        requiresConfirmation: true,
+      });
+    }
+
+    try {
+      const result = await callTool(
+        name,
+        (args as Record<string, unknown>) ?? {}
+      );
+      return res.status(200).json(result);
+    } catch (error) {
+      return sendMcpError(res, error);
     }
   });
 
@@ -143,7 +250,10 @@ async function startServer() {
 
   app.get("*", (req, res) => {
     const requestedPath = req.path === "/" ? "/" : req.path.replace(/\/+$/, "");
-    const redirectTarget = LEGACY_ROUTE_REDIRECTS[requestedPath as keyof typeof LEGACY_ROUTE_REDIRECTS];
+    const redirectTarget =
+      LEGACY_ROUTE_REDIRECTS[
+        requestedPath as keyof typeof LEGACY_ROUTE_REDIRECTS
+      ];
 
     if (redirectTarget) {
       return res.redirect(301, redirectTarget);

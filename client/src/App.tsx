@@ -17,6 +17,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const TheCompanion = lazy(() => import("./pages/TheCompanion"));
 const TheStanding = lazy(() => import("./pages/TheStanding"));
 const TheWaking = lazy(() => import("./pages/TheWaking"));
+const Trading = lazy(() => import("./pages/Trading"));
 
 function LegacyBooksRedirect() {
   useEffect(() => {
@@ -48,6 +49,7 @@ function Router() {
         <Route path="/the-waking" component={TheWaking} />
         <Route path="/the-companion" component={TheCompanion} />
         <Route path="/the-standing" component={TheStanding} />
+        <Route path="/trading" component={Trading} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
