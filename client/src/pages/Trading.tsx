@@ -64,6 +64,12 @@ export default function Trading() {
   const [result, setResult] = useState<CallResult | null>(null);
   const [pendingConfirm, setPendingConfirm] = useState(false);
 
+  // Passphrase gate state.
+  const [gateEnabled, setGateEnabled] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [passphrase, setPassphrase] = useState("");
+  const [unlocking, setUnlocking] = useState(false);
+
   // This console is a private operational tool — keep it out of search indexes.
   useEffect(() => {
     let robots = document.head.querySelector<HTMLMetaElement>(
@@ -98,9 +104,67 @@ export default function Trading() {
     }
   }
 
+  // On mount, check the gate first; only load the console once unlocked.
+  async function loadSession() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/trading/session");
+      const data = await res.json();
+      setGateEnabled(Boolean(data.gateEnabled));
+      setUnlocked(Boolean(data.unlocked));
+      if (data.unlocked) {
+        await loadEverything();
+      } else {
+        setLoading(false);
+      }
+    } catch {
+      setGateEnabled(false);
+      setUnlocked(true);
+      await loadEverything();
+    }
+  }
+
   useEffect(() => {
-    loadEverything();
+    loadSession();
   }, []);
+
+  async function handleUnlock(e: React.FormEvent) {
+    e.preventDefault();
+    if (!passphrase) return;
+    setUnlocking(true);
+    try {
+      const res = await fetch("/api/trading/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode: passphrase }),
+      });
+      const data = await res.json();
+      if (res.ok && data.unlocked) {
+        setPassphrase("");
+        setUnlocked(true);
+        await loadEverything();
+      } else {
+        toast.error(data.error || "Incorrect passphrase.");
+      }
+    } catch {
+      toast.error("Network error — please try again.");
+    } finally {
+      setUnlocking(false);
+    }
+  }
+
+  async function handleLock() {
+    try {
+      await fetch("/api/trading/lock", { method: "POST" });
+    } catch {
+      /* ignore */
+    }
+    setUnlocked(false);
+    setStatus(null);
+    setTools([]);
+    setSelected(null);
+    setResult(null);
+  }
 
   const fields = useMemo(() => getSchemaFields(selected), [selected]);
 
@@ -206,6 +270,45 @@ export default function Trading() {
   const configured = status?.configured;
   const connected = status?.connected;
 
+  // Lock screen — shown when a passphrase is required and we're not yet unlocked.
+  if (gateEnabled && !unlocked) {
+    return (
+      <Layout>
+        <Seo path="/trading" />
+        <section className="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center gap-8 py-10 text-center animate-fade-in">
+          <div className="space-y-3">
+            <p className="text-xs tracking-[0.24em] uppercase text-muted-foreground/65">
+              Robinhood · MCP
+            </p>
+            <h1 className="text-3xl md:text-4xl font-serif text-foreground">
+              Trading Console
+            </h1>
+            <p className="text-sm leading-relaxed text-muted-foreground/80">
+              This console is protected. Enter the passphrase to continue.
+            </p>
+          </div>
+          <form onSubmit={handleUnlock} className="w-full space-y-4">
+            <Input
+              type="password"
+              autoFocus
+              value={passphrase}
+              onChange={e => setPassphrase(e.target.value)}
+              placeholder="Passphrase"
+              className="h-12 rounded-full px-6 text-center"
+            />
+            <Button
+              type="submit"
+              disabled={unlocking || !passphrase}
+              className="w-full rounded-full py-6 text-xs font-medium uppercase tracking-[0.2em]"
+            >
+              {unlocking ? "Unlocking…" : "Unlock"}
+            </Button>
+          </form>
+        </section>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Seo path="/trading" />
@@ -254,16 +357,36 @@ export default function Trading() {
                 <Badge variant="secondary">{status.toolCount} tools</Badge>
               )}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={loadEverything}
-              disabled={loading}
-              className="rounded-full"
-            >
-              Refresh
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={loadEverything}
+                disabled={loading}
+                className="rounded-full"
+              >
+                Refresh
+              </Button>
+              {gateEnabled && unlocked && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLock}
+                  className="rounded-full"
+                >
+                  Lock
+                </Button>
+              )}
+            </div>
           </div>
+
+          {!gateEnabled && (
+            <p className="mt-3 text-xs text-amber-600 dark:text-amber-400">
+              No passphrase is set — anyone with this URL can place trades. Set{" "}
+              <span className="font-mono">TRADING_PASSCODE</span> on the server
+              to require one.
+            </p>
+          )}
 
           {status?.endpoint && (
             <p className="mt-3 break-all font-mono text-xs text-muted-foreground/60">

@@ -19,6 +19,14 @@ import {
   getEndpoint,
   isConfigured,
 } from "./robinhoodMcp";
+import {
+  clearCookie,
+  isGateEnabled,
+  isUnlocked,
+  issueCookie,
+  requireUnlocked,
+  verifyPasscode,
+} from "./tradingAuth";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -156,7 +164,38 @@ async function startServer() {
     return res.status(500).json({ error: "Unexpected trading service error." });
   }
 
-  app.get("/api/trading/status", async (_req, res) => {
+  // Passphrase gate. `/session` is public so the UI knows whether to show a
+  // lock screen; the action endpoints below are protected by requireUnlocked.
+  app.get("/api/trading/session", (req, res) => {
+    return res
+      .status(200)
+      .json({ gateEnabled: isGateEnabled(), unlocked: isUnlocked(req) });
+  });
+
+  app.post("/api/trading/unlock", async (req, res) => {
+    if (!isGateEnabled()) {
+      return res
+        .status(400)
+        .json({ error: "No passphrase is configured on the server." });
+    }
+
+    const { passcode } = req.body ?? {};
+    if (verifyPasscode(passcode)) {
+      issueCookie(res);
+      return res.status(200).json({ unlocked: true });
+    }
+
+    // Small fixed delay to blunt brute-force attempts against a shared secret.
+    await new Promise(resolve => setTimeout(resolve, 400));
+    return res.status(401).json({ error: "Incorrect passphrase." });
+  });
+
+  app.post("/api/trading/lock", (_req, res) => {
+    clearCookie(res);
+    return res.status(200).json({ unlocked: false });
+  });
+
+  app.get("/api/trading/status", requireUnlocked, async (_req, res) => {
     const endpoint = getEndpoint();
 
     if (!isConfigured()) {
@@ -186,7 +225,7 @@ async function startServer() {
     }
   });
 
-  app.get("/api/trading/tools", async (_req, res) => {
+  app.get("/api/trading/tools", requireUnlocked, async (_req, res) => {
     try {
       const { tools } = await connectAndListTools();
       return res.status(200).json({
@@ -200,7 +239,7 @@ async function startServer() {
     }
   });
 
-  app.post("/api/trading/call", async (req, res) => {
+  app.post("/api/trading/call", requireUnlocked, async (req, res) => {
     const { name, arguments: args, confirm } = req.body ?? {};
 
     if (!name || typeof name !== "string") {
